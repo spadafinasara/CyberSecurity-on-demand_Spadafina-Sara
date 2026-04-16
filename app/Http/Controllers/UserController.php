@@ -108,4 +108,36 @@ class UserController extends Controller
     public function download(Request $request) {
         return response()->download(storage_path('app/private/'.$request->get('filename')));
     }
+
+    // public function upload(Request $request)
+    // {
+    //     if (!$user = Auth::user()) {
+    //         return back()->with('message', 'Please Log In');
+    //     }
+
+    //     if (!$request->hasFile('file')) {
+    //         return back()->withErrors("Forbidden Operation");
+    //     }
+
+    //     $path = storage_path("app/public/docs/users/" . $user->id);
+
+    //     if (!file_exists($path)) {
+    //         mkdir($path, 0777, true);
+    //     }
+
+    //     $file = $request->file('file');
+
+        // UNSECURE
+
+        // $filename = $file->getClientOriginalName();
+
+        // $file->move($path, $filename);
+
+        // File::create([
+        //     'name' => $filename,
+        //     'user_id' => $user->id
+        // ]);
+
+
+    // }
 }
