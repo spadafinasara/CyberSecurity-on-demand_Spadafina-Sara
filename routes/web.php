@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users/name/change',[UserController::class,'changeName'])->name('change.name');
     Route::get('/users/email/change',[UserController::class,'changeEmail'])->name('change.email');
     Route::post('/users/img/change',[UserController::class,'changeImg'])->name('change.img');
+
+    Route::post('/users/doc/upload', [FileController::class, 'store'])->name('file.store');
+    Route::get('/download/{file}', [FileController::class, 'download'])->name('download.private');
 
     Route::get('/download-privacy', [UserController::class,'download'])->name('download');
     

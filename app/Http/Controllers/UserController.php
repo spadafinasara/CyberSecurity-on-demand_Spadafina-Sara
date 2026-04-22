@@ -22,9 +22,11 @@ class UserController extends Controller
     // SECURE
     public function profile(){
         if(!$user = Auth::user())
-        return response()->json(['message' => 'Forbidden Operation'], 403);
+            return response()->json(['message' => 'Forbidden Operation'], 403);
         
-        return view('auth.profile',compact('user'));
+        $files = $user->files;
+        
+        return view('auth.profile', compact('user', 'files'));
     }
 
     public function update(Request $request, $id){
@@ -104,6 +106,11 @@ class UserController extends Controller
 
         return redirect()->back()->with('message','Image updated');
     }
+
+    // public function updateFile(Request $request)
+    // {
+
+    // }
 
     public function download(Request $request) {
         return response()->download(storage_path('app/private/'.$request->get('filename')));

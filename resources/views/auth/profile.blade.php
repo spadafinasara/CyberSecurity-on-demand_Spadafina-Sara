@@ -91,8 +91,20 @@
         </div>
         <div class="card shadow-sm border-0 p-4 mb-4">
           <h3 class="fw-semibold mb-3"><i class="bi bi-file-earmark-text me-2"></i>User documents</h3>
-          {{-- <a href="{{route('download','filename=privacy.pdf')}}" class="d-block mb-2 text-decoration-none text-info fw-semibold"><i class="bi bi-file-earmark-pdf me-2"></i>Privacy policy</a> --}}
-
+          
+          <form method="POST" action="{{route('file.store')}}" class="mb-3" enctype="multipart/form-data">
+                  @csrf
+                  <label for="">Carica documento</label>
+                  <div class="mb-3">
+                      <input type="file" class="form-control" aria-label="file example" name="file" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+              @foreach($files as $file)
+                  <a href="{{ route('download.private', $file->file) }}" class="d-block mb-2 text-decoration-none text-info fw-semibold">
+                      <i class="bi bi-file-earmark me-2"></i>{{ $file->name }}
+                  </a>
+              @endforeach
         </div>
       </div>
     </div>
