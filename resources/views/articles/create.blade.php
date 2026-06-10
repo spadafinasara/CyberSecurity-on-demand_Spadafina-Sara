@@ -10,15 +10,15 @@
       <div class="col-md-10 col-lg-8">
         <div class="card shadow-lg border-0 rounded-4">
           <div class="card-body p-4">
-            <form action="{{route('articles.store')}}" method="POST">
+            <form action="{{route('articles.store')}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
                 <label for="title" class="form-label fw-semibold">Title</label>
                 <input type="text" class="form-control rounded-pill" id="title" placeholder="An interesting title here" name="title">
               </div>
               <div class="mb-3">
-                <label for="title" class="form-label fw-semibold">Article image</label>
-                <input type="file" class="form-control rounded-pill" id="title" placeholder="An interesting title here" name="title">
+                <label for="articleimage" class="form-label fw-semibold">Article image</label>
+                <input type="file" class="form-control rounded-pill" id="articleimage" name="image">
               </div>
               <div class="mb-3">
                 <label for="editor" class="form-label fw-semibold">Content</label>

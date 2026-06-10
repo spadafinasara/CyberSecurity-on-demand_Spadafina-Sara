@@ -21,9 +21,9 @@ use App\Http\Controllers\FileController;
 
 Route::get('/', [ArticleController::class, 'index'])->name('home');
 // UNSECURE
-Route::get('/articles/search', [ArticleController::class, 'search'])->name('articles.search');
+// Route::get('/articles/search', [ArticleController::class, 'search'])->name('articles.search');
 // SECURE: throttle:5,1
-// Route::get('/articles/search', [ArticleController::class, 'search'])->middleware('throttle:5,1')->name('articles.search');
+Route::get('/articles/search', [ArticleController::class, 'search'])->middleware('throttle:5,1')->name('articles.search');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -56,8 +56,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/articles', [AdminController::class,'articles'])->name('admin.articles');
         Route::get('/users', [AdminController::class,'users'])->name('admin.users');
         
-        Route::get('/users/{id}/toggle', [AdminController::class,'toggleUsersAdmin'])->name('admin.users.toggle');
-        Route::get('articles/{id}/toggle',[AdminController::class,'toggleArticleStatus'])->name('admin.articles.toggle');
+        Route::post('/users/{id}/toggle', [AdminController::class,'toggleUsersAdmin'])->name('admin.users.toggle');
+        Route::post('articles/{id}/toggle',[AdminController::class,'toggleArticleStatus'])->name('admin.articles.toggle');
         // Route::post('/users/{id}/toggle', [AdminController::class,'toggleUsersAdmin'])->name('admin.users.toggle');
         // Route::post('/articles/{id}/toggle',[AdminController::class,'toggleArticleStatus'])->name('admin.articles.toggle');
     });
